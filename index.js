@@ -1,50 +1,28 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-$('.form').find('input, textarea').on('keyup blur focus', function (e) {
-  
-  var $this = $(this),
-      label = $this.prev('label');
-
-	  if (e.type === 'keyup') {
-			if ($this.val() === '') {
-          label.removeClass('active highlight');
-        } else {
-          label.addClass('active highlight');
-        }
-    } else if (e.type === 'blur') {
-    	if( $this.val() === '' ) {
-    		label.removeClass('active highlight'); 
-			} else {
-		    label.removeClass('highlight');   
-			}   
-    } else if (e.type === 'focus') {
-      
-      if( $this.val() === '' ) {
-    		label.removeClass('highlight'); 
-			} 
-      else if( $this.val() !== '' ) {
-		    label.addClass('highlight');
-			}
-    }
-
-});
-
-$('.tab a').on('click', function (e) {
-  
-  e.preventDefault();
-  
-  $(this).parent().addClass('active');
-  $(this).parent().siblings().removeClass('active');
-  
-  target = $(this).attr('href');
-
-  $('.tab-content > div').not(target).hide();
-  
-  $(target).fadeIn(600);
-  
-});
+function next_step1() {
+document.getElementById("firstPage").style.display = "none";
+document.getElementById("secondPage").style.display = "block";
+document.getElementById("thirdPage").style.display = "none";
+}
+function prev_step1() {
+document.getElementById("firstPage").style.display = "block";
+document.getElementById("secondPage").style.display = "none";
+document.getElementById("thirdPage").style.display = "none";
+}
+function next_step2() {
+document.getElementById("firstPage").style.display = "none";
+document.getElementById("secondPage").style.display = "none";
+document.getElementById("thirdPage").style.display = "block";
+}
+function prev_step2() {
+document.getElementById("thirdPage").style.display = "none";
+document.getElementById("secondPage").style.display = "block";
+document.getElementById("firstPage").style.display = "none";
+}
+var previewFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('upload');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
